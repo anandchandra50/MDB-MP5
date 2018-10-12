@@ -6,6 +6,6 @@ public class WeatherAdapter {
     ArrayList<Weather> weatherSchedule = new ArrayList<>();
 
     public WeatherAdapter() {
-        
+
     }
 }
