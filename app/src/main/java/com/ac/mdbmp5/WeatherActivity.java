@@ -14,8 +14,5 @@ public class WeatherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
-        placeTextView = findViewById(R.id.placeTextView);
-        Typeface DINAlternate = Typeface.createFromAsset(getAssets(), "fonts/din_regular.ttf");
-//        placeTextView.setTypeface(DINAlternate);
     }
 }
