@@ -13,5 +13,6 @@ public class WeatherDay {
         this.tempHigh = tempHigh;
         this.tempLow = tempLow;
         this.raining = raining;
+
     }
 }

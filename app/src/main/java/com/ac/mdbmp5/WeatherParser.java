@@ -1,6 +1,7 @@
 package com.ac.mdbmp5;
 
 import android.content.Context;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -15,66 +16,29 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
 
-
-public class WeatherParser extends AsyncTask<Integer, Integer, Void>{
-    String apiKey = "723c641c1108b54458bf6b4abd70cb4c";
-    static String url = "https://api.darksky.net/forecast/723c641c1108b54458bf6b4abd70cb4c/39.7684,-86.1581?exclude=alerts,flags";
-
-    @Override
-    protected Void doInBackground(Integer... integers) {
-
-    }
-
-    @Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
-    }
-
-    public static void todayData(Context context) {
-
-    }
+public class WeatherParser {
+    static String apiKey = "723c641c1108b54458bf6b4abd70cb4c";
+    static String url = "https://api.darksky.net/forecast/";
+    static WeatherDay wd;
 
     public static void tenDayData(Context context) {
-        RequestQueue queue = Volley.newRequestQueue(context);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONObject currently = response.getJSONObject("currently");
-                            JSONObject today = response.getJSONObject("daily").getJSONArray("data").getJSONObject(0);
-                            JSONArray hourly = response.getJSONObject("hourly").getJSONArray("data");
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
-                        Log.d("BOBOBOB", error.toString());
-
-                    }
-                });
-        queue.add(jsonObjectRequest);
-    }
-
-    public static void getTodayData(Context context) {
 
     }
 
-    private WeatherDay parseDay(JSONObject currently, JSONObject today, JSONArray hourly) {
+    public static WeatherDay parseDay(JSONObject response, int index) {
+        JSONObject currently;
+        JSONObject today;
+        JSONArray hourly;
         String description = null;
         String icon = null;
         int tempHigh = 0;
         int tempLow = 0;
         int raining = -1;
         try {
+            currently = response.getJSONObject("currently");
+            today = response.getJSONObject("daily").getJSONArray("data").getJSONObject(index);
+            hourly = response.getJSONObject("hourly").getJSONArray("data");
             description = currently.getString("summary");
             icon =  currently.getString("icon");
             tempHigh =  today.getInt("temperatureMax");

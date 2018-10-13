@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.CustomViewHolder> {
     ArrayList<WeatherDay> weatherSchedule = new ArrayList<>();
-    public WeatherAdapter(final String pokemon) {
+    public WeatherAdapter(final ArrayList days) {
 //        new AsyncTask<Void, Void, Void>() {
 //            protected Void doInBackground(Void... voids) {
 //                try {
@@ -53,6 +53,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.CustomVi
 //                notifyDataSetChanged();
 //            }
 //        }.execute();
+        weatherSchedule = days;
     }
 
     @Override
