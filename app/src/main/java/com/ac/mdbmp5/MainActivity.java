@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 case 2:
                     rootView = inflater.inflate(R.layout.fragment_moves, container, false);
                     RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-                    ListAdapter adapter = new ListAdapter("laksjdf");
+                    WeatherAdapter adapter = new WeatherAdapter("laksjdf");
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(adapter);
                     return rootView;
